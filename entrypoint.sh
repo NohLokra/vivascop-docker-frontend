@@ -62,6 +62,7 @@ printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --rem
 echo "Repo cloned into app of $(pwd): $GIT_REPO";
 
 echo "Currently working in directory: $(pwd)";
+ls
 echo "Moving to app";
 cd app;
 
