@@ -22,6 +22,8 @@ file_env(){
 	unset "$fileVar"
 }
 
+apt-get update && apt-get install -y ssh curl
+
 file_env 'SSH_KEY'
 file_env 'GIT_REPO'
 
