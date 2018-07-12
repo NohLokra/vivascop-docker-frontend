@@ -52,6 +52,12 @@ nvm use 8.9.4
 
 #install node app
 npm i
+npm i -g @angular/cli@1.7.4
+ng build
+
+mkdir -p /app/
+cp -r ./dist/. /app/
+cp ./docker/nginx.default.conf /etc/nginx/conf.d/default.conf
 
 #start app
 npm run dev
