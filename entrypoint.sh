@@ -59,11 +59,8 @@ printf "${SSH_KEY_PASSPHRASE}\n" | git clone $GIT_REPO app && \
 cd app && \
 printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --remote --merge
 
-echo "Repo cloned into app of $(pwd): $GIT_REPO";
-
+echo "Repo cloned: $GIT_REPO";
 echo "Currently working in directory: $(pwd)";
-echo "Moving to app";
-cd app;
 
 #install node app
 npm i -g @angular/cli@1.7.4
