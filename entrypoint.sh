@@ -49,7 +49,7 @@ npm i
 echo "Dependencies installed successfuly"
 echo "Building project"
 ng build
-cp ./dist/. ../public
+cp -r ./dist/. ../public
 
 echo "dist folder is ready to be served"
 
