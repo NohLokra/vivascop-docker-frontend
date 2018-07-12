@@ -63,13 +63,19 @@ echo "Repo cloned: $GIT_REPO";
 echo "Currently working in directory: $(pwd)";
 
 #install node app
+echo "Installing Angular..."
 npm i -g @angular/cli@1.7.4
-npm i
-ng build
 
-mkdir -p /app/
-cp -r ./dist/. /app/
-cp ./docker/nginx.default.conf /etc/nginx/conf.d/default.conf
+echo "Angular installed successfuly"
+echo "Installing project dependencies..."
+sudo npm i
+echo "Dependencies installed successfuly"
+echo "Building project"
+sudo ng build
+echo "dist folder is ready to be served"
+
+echo "Setting up nginx default configuration"
+sudo cp ./docker/nginx.default.conf /etc/nginx/conf.d/default.conf
 
 #start app
-npm run dev
+nginx
