@@ -40,48 +40,24 @@ echo "eval ssh-agent" && \
 eval `ssh-agent -s` && \
 printf "${SSH_KEY_PASSPHRASE}\n" | ssh-add $HOME/.ssh/id_rsa && \
 
-# Setup node and Angular
-echo "Installing NVM...";
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-echo "NVM installed and environment variables set"
-
-echo "Installing Node version 8.9.4"
-nvm install 8.9.4
-nvm use 8.9.4
-echo "Node v8.9.4 now installed and set as the default used version";
-
 #clone the repo
 echo "clone repo : $GIT_REPO in folder app of $(pwd)" && \
 printf "${SSH_KEY_PASSPHRASE}\n" | git clone $GIT_REPO app && \
-cd app && \
-printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --remote --merge
+cd app/client
 
 echo "Repo cloned: $GIT_REPO";
 echo "Currently working in directory: $(pwd)";
 
-echo "GOing unsafe now..."
-npm config set user 0
-npm config set unsafe-perm true
-
-#install node app
-echo "Installing Angular..."
-npm i -g @angular/cli@1.7.4
-
-echo "Angular installed successfuly"
 echo "Installing project dependencies..."
 npm i
 echo "Dependencies installed successfuly"
 echo "Building project"
 ng build
+cp ./dist/. ../public
+
 echo "dist folder is ready to be served"
 
-echo "Setting up nginx default configuration"
-cp ./docker/nginx.default.conf /etc/nginx/conf.d/default.conf
-
 #start app
-nginx
-
-bash
+cd ..
+npm i
+npm start
