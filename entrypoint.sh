@@ -62,6 +62,10 @@ printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --rem
 echo "Repo cloned: $GIT_REPO";
 echo "Currently working in directory: $(pwd)";
 
+echo "GOing unsafe now..."
+npm config set user 0
+npm config set unsafe-perm true
+
 #install node app
 echo "Installing Angular..."
 npm i -g @angular/cli@1.7.4
