@@ -48,7 +48,7 @@ echo "Installing project dependencies..."
 npm i
 echo "Dependencies installed successfuly"
 echo "Building project"
-ng build
+ng build --prod
 cp -r ./dist/. ../public
 
 echo "dist folder is ready to be served"
