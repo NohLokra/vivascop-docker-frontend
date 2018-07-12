@@ -22,10 +22,6 @@ file_env(){
 	unset "$fileVar"
 }
 
-echo "Installing SSH and Curl since they are needed for our business"
-apt-get update && apt-get install -y ssh curl git
-echo "Installations complete"
-
 file_env 'SSH_KEY'
 file_env 'GIT_REPO'
 

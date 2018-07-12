@@ -5,7 +5,7 @@ COPY entrypoint.sh /usr/local/bin/
 RUN chmod 777 /usr/local/bin/entrypoint.sh
 
 RUN apt-get update
-RUN apt-get install curl git ssh
+RUN apt-get install -y curl git ssh
 
 RUN npm i -g @angular/cli@1.7.4
 
