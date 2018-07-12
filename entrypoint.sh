@@ -40,12 +40,6 @@ echo "eval ssh-agent" && \
 eval `ssh-agent -s` && \
 printf "${SSH_KEY_PASSPHRASE}\n" | ssh-add $HOME/.ssh/id_rsa && \
 
-#clone the repo
-echo "clone repo : $GIT_REPO" && \
-printf "${SSH_KEY_PASSPHRASE}\n" | git clone $GIT_REPO app && \
-cd app && \
-printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --remote --merge
-
 # Setup node and Angular
 echo "Installing NVM...";
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -59,11 +53,21 @@ nvm install 8.9.4
 nvm use 8.9.4
 echo "Node v8.9.4 now installed and set as the default used version";
 
+#clone the repo
+echo "clone repo : $GIT_REPO in folder app of $(pwd)" && \
+printf "${SSH_KEY_PASSPHRASE}\n" | git clone $GIT_REPO app && \
+cd app && \
+printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --remote --merge
+
+echo "Repo cloned into app of $(pwd): $GIT_REPO";
+
 echo "Currently working in directory: $(pwd)";
+echo "Moving to app";
+cd app;
 
 #install node app
-npm i
 npm i -g @angular/cli@1.7.4
+npm i
 ng build
 
 mkdir -p /app/
