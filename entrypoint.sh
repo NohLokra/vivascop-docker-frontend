@@ -22,7 +22,9 @@ file_env(){
 	unset "$fileVar"
 }
 
+echo "Installing SSH and Curl since they are needed for our business"
 apt-get update && apt-get install -y ssh curl
+echo "Installations complete"
 
 file_env 'SSH_KEY'
 file_env 'GIT_REPO'
@@ -45,12 +47,19 @@ cd app && \
 printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --remote --merge
 
 # Setup node and Angular
+echo "Installing NVM...";
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+echo "NVM installed and environment variables set"
+
+echo "Installing Node version 8.9.4"
 nvm install 8.9.4
 nvm use 8.9.4
+echo "Node v8.9.4 now installed and set as the default used version";
+
+echo "Currently working in directory: $(pwd)";
 
 #install node app
 npm i
