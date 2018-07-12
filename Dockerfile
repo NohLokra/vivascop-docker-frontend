@@ -1,4 +1,4 @@
-FROM node:9
+FROM nginx:alpine
 
 COPY entrypoint.sh /usr/local/bin/
 
