@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
