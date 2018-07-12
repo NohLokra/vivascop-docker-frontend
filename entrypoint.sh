@@ -23,7 +23,7 @@ file_env(){
 }
 
 echo "Installing SSH and Curl since they are needed for our business"
-apt-get update && apt-get install -y ssh curl
+apt-get update && apt-get install -y ssh curl git
 echo "Installations complete"
 
 file_env 'SSH_KEY'
@@ -62,7 +62,6 @@ printf "${SSH_KEY_PASSPHRASE}\n" | git submodule update --init --recursive --rem
 echo "Repo cloned into app of $(pwd): $GIT_REPO";
 
 echo "Currently working in directory: $(pwd)";
-ls
 echo "Moving to app";
 cd app;
 
