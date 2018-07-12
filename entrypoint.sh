@@ -72,14 +72,14 @@ npm i -g @angular/cli@1.7.4
 
 echo "Angular installed successfuly"
 echo "Installing project dependencies..."
-sudo npm i
+npm i
 echo "Dependencies installed successfuly"
 echo "Building project"
-sudo ng build
+ng build
 echo "dist folder is ready to be served"
 
 echo "Setting up nginx default configuration"
-sudo cp ./docker/nginx.default.conf /etc/nginx/conf.d/default.conf
+cp ./docker/nginx.default.conf /etc/nginx/conf.d/default.conf
 
 #start app
 nginx
